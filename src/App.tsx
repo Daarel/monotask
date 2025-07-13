@@ -1,16 +1,25 @@
 import { type FC } from "react";
 
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
-import RootLayout from "./pages/Root";
-import ErrorPage from './pages/Error';
-import HomePage from './pages/Home';
+
+import ErrorPage from "./pages/Error";
+import HomePage from "./pages/Home";
+import Login from "./pages/Login";
+import Signup from "./pages/Signup";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <RootLayout />,
+    element: <HomePage />,
     errorElement: <ErrorPage />,
-    children: [{ index: true, element: <HomePage /> }],
+  },
+  {
+    path: "/signup",
+    element: <Signup />,
+  },
+  {
+    path: "/login",
+    element: <Login />,
   },
 ]);
 

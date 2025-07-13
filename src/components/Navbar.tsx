@@ -1,45 +1,42 @@
-import { NavLink, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import { navLink } from "../../constants/index";
+import Button from "../components/Button";
 
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
-import { useRef } from "react";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const MainNavigation = () => {
-  const navRef = useRef<HTMLElement | null>(null);
-
+const NavBar = () => {
   useGSAP(() => {
     const navTween = gsap.timeline({
       scrollTrigger: {
-        trigger: navRef.current,
+        trigger: "nav",
         start: "bottom top",
       },
     });
 
     navTween.fromTo(
-      navRef.current,
+      "nav",
       { background: "transparent" },
-      {
-        backgroundColor: "#00000050",
-        backdropFilter: "blur(10px)",
-        duration: 1,
-        ease: "power1.inOut",
-      }
+      { backgroundColor: "00000050", duration: 1, ease: "power1.inOut" }
     );
   }, []);
 
   const navigate = useNavigate();
 
-  const handleNavigate = () => {
-    navigate("/signin");
+  const handleSignup = () => {
+    navigate("/signup");
+  };
+
+  const handleLogin = () => {
+    navigate("/login");
   };
 
   return (
-    <header ref={navRef}>
+    <header>
       <nav className='flex justify-evenly items-center h-20'>
         <a
           href='/'
@@ -48,26 +45,30 @@ const MainNavigation = () => {
           MonoTask
         </a>
         <ul className='flex gap-10'>
-          {navLink.map(({ id, title, path }) => (
+          {navLink.map(({ id, title }) => (
             <li key={id}>
-              <NavLink
-                to={path}
+              <a
+                href={`#${id}`}
                 className='underline-from-center hover:text-[var(--color-secondary-blue)] transition-colors duration-300 ease-in-out'
               >
                 {title}
-              </NavLink>
+              </a>
             </li>
           ))}
         </ul>
-        <button
-          onClick={handleNavigate}
-          className='button transition-colors duration-300 ease-in-out'
-        >
-          Sign In
-        </button>
+        <Button
+          title='Sign up'
+          onClick={handleSignup}
+          className={"button transition-colors duration-300 ease-in-out"}
+        />
+        <Button
+          title='Sign up'
+          onClick={handleLogin}
+          className={"button transition-colors duration-300 ease-in-out"}
+        />
       </nav>
     </header>
   );
 };
 
-export default MainNavigation;
+export default NavBar;
