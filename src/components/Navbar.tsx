@@ -30,11 +30,13 @@ const NavBar = () => {
 
   return (
     <>
-      {isFixed === true && <div className="h-20"/>}
+      {isFixed === true && <div className='h-20' />}
 
       <nav
         className={`${
-          isFixed ? "fixed top-0 left-0 z-50 shadow-md bg-[var(--color-creamy-white)]/30 backdrop-blur-md" : "relative"
+          isFixed
+            ? "fixed top-0 left-0 z-50 shadow-md bg-[var(--color-creamy-white)]/30 backdrop-blur-md"
+            : "relative"
         } w-full h-20 flex items-center justify-evenly px-8 bg-[var(--color-creamy-white)]`}
       >
         <a
@@ -55,17 +57,19 @@ const NavBar = () => {
             </li>
           ))}
         </ul>
-        <div className='flex flex-row gap-2'>
+        <div className='flex flex-row gap-3'>
           <Button
-            title='Sign up'
-            onClick={handleSignup}
-            className={"button transition-colors duration-300 ease-in-out"}
-          />
-          <Button
-            title='Login'
             onClick={handleLogin}
-            className={"button transition-colors duration-300 ease-in-out"}
-          />
+            className='button transition-colors duration-300 ease-in-out text-sm'
+          >
+            Login
+          </Button>
+          <Button
+            onClick={handleSignup}
+            className='button transition-colors duration-300 ease-in-out text-sm'
+          >
+            Get Started
+          </Button>
         </div>
       </nav>
     </>
