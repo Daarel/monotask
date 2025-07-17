@@ -1,4 +1,3 @@
-import planning from "../../src/assets/images/planning.webp";
 import Button from "./Button";
 
 import { useNavigate } from "react-router-dom";
@@ -28,7 +27,7 @@ const Hero = () => {
         </Button>
       </div>
       <img
-        src={planning}
+        src='/images/planning.webp'
         alt='Planning'
         className='h-[30rem] w-auto rounded-l-3xl'
       />
